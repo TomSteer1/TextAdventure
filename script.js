@@ -89,7 +89,7 @@ function loadScript(){
             addText("\nOr pickup:");
             addText(locations[currentLocationId].items.join("\n"));
         }
-        if(currentLocationId == 9{
+        if(currentLocationId == 9){
            addArt(asciiMario);
         }
     }else{
