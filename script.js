@@ -168,7 +168,7 @@ function useShop(input){
                 draw();
                 loadScript();
                 addText("You sold the RTX 3080");
-                addArt(asciiTorch);
+                addArt(ascii3080);
                 player.inventory.splice(player.inventory.indexOf("RTX 3080"),1);
             }else{
                 addText("You don't have a RTX 3080 to sell")
