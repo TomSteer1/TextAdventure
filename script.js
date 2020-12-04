@@ -46,6 +46,7 @@ function addText(text){
     for(let i = 0;i<text.length;i++){  
         ctx.fillText(text[i],10,line);
         line += 20;
+        if (line > window.innerHeight) scroll(20);
     }
 }
 
@@ -56,8 +57,20 @@ function addArt(art){
     for(let i = 0;i<art.length;i++){  
         ctx.fillText(art[i],10,line);
         line += 10;
+        if (line > window.innerHeight) scroll(10);
     }
     line +=10;
+    if (line > window.innerHeight) scroll(10);
+}
+
+function scroll(dy) {
+
+    let imgData = ctx.getImageData(0, 0, window.innerWidth, window.innerHeight);
+    ctx.putImageData(imgData, 0, -dy);
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, window.innerHeight-dy, window.innerWidth, dy);
+    line -= dy;
+    
 }
 
 function loadScript(){
