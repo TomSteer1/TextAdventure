@@ -46,15 +46,17 @@ function draw(){
 
 
 function addText(text){
-    ctx.font = "20px monospace"
-    ctx.fillStyle = "white";
-    text = text.split("\n");
-    for(let i = 0;i<text.length;i++){  
+    if(text != -1){    
+        ctx.font = "20px monospace"
         ctx.fillStyle = "white";
-        ctx.fillText(text[i],10,line);
-        line += 20;
-        if (line > window.innerHeight)scroll(20);
-    }
+        text = text.split("\n");
+        for(let i = 0;i<text.length;i++){  
+            ctx.fillStyle = "white";
+            ctx.fillText(text[i],10,line);
+            line += 20;
+            if (line > window.innerHeight)scroll(20);
+        }
+   }
 }
 
 function addArt(art){
