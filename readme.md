@@ -11,4 +11,6 @@
 	<dd>Resets the screen</dd>
 	<dt>Look</dt>
 	<dd>Looks around</dd>
+	<dt>Restart</dt>
+	<dd>Restarts the game</dd>
 </dl>

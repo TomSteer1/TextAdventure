@@ -10,6 +10,12 @@ player.money = 0;
 player.inventory = [];
 
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+
+
 $(document).ready(function (){
     draw();
     loadScript();
@@ -44,9 +50,10 @@ function addText(text){
     ctx.fillStyle = "white";
     text = text.split("\n");
     for(let i = 0;i<text.length;i++){  
+        ctx.fillStyle = "white";
         ctx.fillText(text[i],10,line);
         line += 20;
-        if (line >= window.innerHeight) scroll(20);
+        if (line > window.innerHeight)scroll(20);
     }
 }
 
@@ -64,19 +71,19 @@ function addArt(art){
 }
 
 function scroll(dy) {
-
     let imgData = ctx.getImageData(0, 0, window.innerWidth, window.innerHeight);
     ctx.putImageData(imgData, 0, -dy);
     ctx.fillStyle = "black";
     ctx.fillRect(0, window.innerHeight-dy, window.innerWidth, dy);
     line -= dy;
+    console.log(line + " | " + dy);
     
 }
 
 function loadScript(){
     if(currentLocationId != 5){
         addText(locations[currentLocationId].script);
-        if(currentLocationId != 2)addText("\nYou can :");
+        if(currentLocationId != 2 && currentLocationId != 9)addText("\nYou can :");
         addText(locations[currentLocationId].optionNames);
         if(locations[currentLocationId].items.length != 0){
             addText("\nOr pickup:");
@@ -291,6 +298,9 @@ function parseInput(){
                 case "BAL":
                     addText("Your current balance is : £"+player.money);
                 break;
+                case "RESTART":
+                    location.reload()
+                break;
                 case "?":
                     addText("Available Commands:");
                     addText("   Take => Take item");
@@ -298,6 +308,7 @@ function parseInput(){
                     addText("   Balance(bal) => View Balance");
                     addText("   Clear => Clears screen");
                     addText("   Look => Looks around");
+                    addText("   Restart => Restarts the game");
 
                 break;
                 case "":
