@@ -1,0 +1,56 @@
+*{
+    font-family:monospace;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+#header{
+    width:100%; 
+    /* background:#f00; */
+    }
+#footer{
+    width:100%; 
+    /* background:#f00; */
+    bottom:0;
+    position:absolute;
+
+    }
+
+#game{
+    background-color: black;
+    border-color: black;
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    display: inline;
+}
+
+#input{ 
+    position: fixed;
+    width: 60%;
+    height: 30px;
+    left: 10;
+    bottom: 0;
+    font-size: larger;
+    background-color: white;
+    border-color: black;
+}
+#music{
+    color: white;
+    font-size: large;
+    margin-left: 95%;
+    margin-bottom: 10px;
+    bottom:0;
+    position:absolute;
+}
+
+button{
+    width: 80%;
+    padding: 1% 2%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: large;
+}

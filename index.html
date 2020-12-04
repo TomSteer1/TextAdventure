@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="./script.js"></script>
+    <script src="./locations.js"></script>
+    <script src="./art.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="./style.css">
+    
+    <title>Text Adventure Game</title>
+</head>
+
+
+<body>
+    <div id="header"></div>
+    <div id="game" class="ui-widget-content">
+        <div id = gameArea>
+            <canvas id="gameCanvas"></canvas>
+        </div>
+        <div id="gameInfo">
+            <input id="input"></input>
+        </div>
+    </div>
+    <div id = "music">
+        <p>Music Control</p>
+        <button onclick="document.getElementById('minecraft').play()">Play</button>
+        <button onclick="document.getElementById('minecraft').pause()">Pause</button>
+        <audio autoplay preload loop id="minecraft">
+            <source src="minecraft.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div id="footer">
+    </div>
+</body>
+</html>
