@@ -46,8 +46,8 @@ function addText(text){
     for(let i = 0;i<text.length;i++){  
         ctx.fillText(text[i],10,line);
         line += 20;
+        if (line >= window.innerHeight) scroll(20);
     }
-    if (line > window.innerHeight) scroll(20);
 }
 
 function addArt(art){
