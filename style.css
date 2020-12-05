@@ -8,11 +8,9 @@
 
 #header{
     width:100%; 
-    /* background:#f00; */
     }
 #footer{
     width:100%; 
-    /* background:#f00; */
     bottom:0;
     position:absolute;
 
@@ -45,16 +43,7 @@
     bottom:0;
     position:absolute;
 }
-
-#inventoryArea{
-    position: absolute;
-    margin-left: 90%;
-    margin-top: 10px;
-    top: 0;
-    color: white;
-    font-size: large;
-    visibility: hidden;
-}
+ 
 
 
 button{
