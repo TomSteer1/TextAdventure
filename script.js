@@ -96,20 +96,21 @@ function addText(text){
     displayInventory();
     if(text != -1){    
         ctx.font = "20px monospace"
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "#20C20E";
         text = text.split("\n");
         for(let i = 0;i<text.length;i++){  
-            ctx.fillStyle = "white";
+            ctx.fillStyle = "#20C20E";
             ctx.fillText(text[i],10,line);
             line += 20;
-            if (line > window.innerHeight)scroll(20);
+            if (line > window.innerHeight -20 )scroll(20);
         }
+        if (line > window.innerHeight -20 )scroll(20);
    }
 }
 
 function addArt(art){
     ctx.font = "20px monospace"
-    ctx.fillStyle = "white";
+    ctx.fillStyle = "#20C20E";
     art = art.split("\n");
     for(let i = 0;i<art.length;i++){  
         ctx.fillText(art[i],10,line);
@@ -126,7 +127,7 @@ function scroll(dy) {
     ctx.fillStyle = "black";
     ctx.fillRect(0, window.innerHeight-dy, window.innerWidth, dy);
     line -= dy;
-    console.log(line + " | " + dy);
+    if (line > window.innerHeight - 20)scroll(20);
     
 }
 
