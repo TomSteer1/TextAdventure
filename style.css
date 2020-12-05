@@ -46,6 +46,17 @@
     position:absolute;
 }
 
+#inventoryArea{
+    position: absolute;
+    margin-left: 90%;
+    margin-top: 10px;
+    top: 0;
+    color: white;
+    font-size: large;
+    visibility: hidden;
+}
+
+
 button{
     width: 80%;
     padding: 1% 2%;

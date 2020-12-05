@@ -40,8 +40,50 @@ function draw(){
     canvas.width = width;
     canvas.height = height;
     ctx.clearRect(0, 0, width, height);
-    ctx.beginPath();
+    displayInventory();
 }
+
+
+function displayInventory(){
+    console.log("Inventory Update " + items);
+    inventory = document.getElementById("inventory");
+    inventoryContext = inventory.getContext("2d");
+    let height = (1249 / window.innerHeight)*(1249*0.125);
+    let width = (2560 / window.innerWidth)*(2560*0.04);
+    inventory.width = width;
+    inventory.height = height;
+    inventoryContext.fillStyle = "grey";
+    inventoryContext.fillRect(0,0,width,height);
+    inventoryContext.font = "20px monospace";
+    inventoryContext.fillStyle = "black";
+    inventoryContext.fillText("Inventory",20,20);
+    if(items[0]){
+        let image = new Image();
+        image.src = "img/0.png";
+        inventoryContext.drawImage(image,10,20,60,60);
+    }
+    if(items[1]){
+        let image = new Image();
+        image.src = "img/1.png";
+        inventoryContext.drawImage(image,70,20,60,60);
+    }
+    if(items[2]){
+        let image = new Image();
+        image.src = "img/2.png";
+        inventoryContext.drawImage(image,10,80,60,60);
+    }
+    if(items[3]){
+        let image = new Image();
+        image.src = "img/3.png";
+        inventoryContext.drawImage(image,70,80,60,60);
+    }
+    if(items[4]){
+        let image = new Image();
+        image.src = "img/4.png";
+        inventoryContext.drawImage(image,10,140,60,60);
+    }
+}
+
 
 
 function cheat(){
@@ -52,6 +94,7 @@ function cheat(){
 
 
 function addText(text){
+    displayInventory();
     if(text != -1){    
         ctx.font = "20px monospace"
         ctx.fillStyle = "white";
@@ -238,6 +281,7 @@ function pickup(item){
         }
         areaItems.splice(areaItems.indexOf(item),1);
         locations[currentLocationId].items = areaItems;
+        displayInventory();
 
         
     }else{
