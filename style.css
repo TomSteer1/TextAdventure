@@ -45,6 +45,10 @@
 }
  
 
+#cheatButton{
+    background-color: red;
+}
+
 
 button{
     width: 80%;

@@ -6,6 +6,7 @@ let counter = 0;
 let currentLocationId = 0;
 let items = [false,false,false,false,false];
 let itemName = ["Manual","Key","Car Key","Torch","3080"];
+let textColour = "#20C20E"
 player.money = 0;
 player.inventory = [];
 
@@ -47,6 +48,17 @@ function draw(){
 function cheat(){
       items =  [true,true,true,true,true];
       player.money = 30000000;
+      textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
+      document.getElementById("minecraft").volume = 1;
+      document.getElementById("minecraft").play();
+      document.getElementById("music").style.visibility = "hidden";
+      setInterval(function(){
+          textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
+          document.getElementById("game").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+          document.getElementById("input").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      },100)
+      draw();
+      loadScript();
 }
 
 
@@ -54,10 +66,10 @@ function cheat(){
 function addText(text){
     if(text != -1){    
         ctx.font = "20px monospace"
-        ctx.fillStyle = "#20C20E";
+        ctx.fillStyle = textColour;
         text = text.split("\n");
         for(let i = 0;i<text.length;i++){  
-            ctx.fillStyle = "#20C20E";
+            ctx.fillStyle = textColour;
             ctx.fillText(text[i],10,line);
             line += 20;
             if (line > window.innerHeight -20 )scroll(20);
@@ -68,7 +80,7 @@ function addText(text){
 
 function addArt(art){
     ctx.font = "20px monospace"
-    ctx.fillStyle = "#20C20E";
+    ctx.fillStyle = textColour;
     art = art.split("\n");
     for(let i = 0;i<art.length;i++){  
         ctx.fillText(art[i],10,line);
@@ -82,8 +94,7 @@ function addArt(art){
 function scroll(dy) {
     let imgData = ctx.getImageData(0, 0, window.innerWidth, window.innerHeight);
     ctx.putImageData(imgData, 0, -dy);
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, window.innerHeight-dy, window.innerWidth, dy);
+    ctx.clearRect(0, window.innerHeight-dy, window.innerWidth, dy);
     line -= dy;
     if (line > window.innerHeight - 20)scroll(20);
     
