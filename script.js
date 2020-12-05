@@ -46,7 +46,7 @@ function draw(){
 
 function cheat(){
       items =  [true,true,true,true,true];
-      money = 30000000;
+      player.money = 30000000;
 }
 
 
