@@ -45,7 +45,6 @@ function draw(){
 
 
 function displayInventory(){
-    console.log("Inventory Update " + items);
     inventory = document.getElementById("inventory");
     inventoryContext = inventory.getContext("2d");
     let height = (1249 / window.innerHeight)*(1249*0.125);
