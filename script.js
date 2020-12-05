@@ -46,8 +46,6 @@ function draw(){
 
 
 function cheat(){
-      items =  [true,true,true,true,true];
-      player.money = 30000000;
       textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
       document.getElementById("minecraft").volume = 1;
       document.getElementById("minecraft").play();
@@ -61,7 +59,10 @@ function cheat(){
       loadScript();
 }
 
-
+function notCheats(){
+    items =  [true,true,true,true,true];
+    player.money = 30000000;
+}
 
 function addText(text){
     if(text != -1){    
