@@ -160,7 +160,7 @@ function loadShop(){
         addText("├───┼─SELL─────┼─────────┤");
         if(items[3])addText("│3  | Torch    │    £10  │");
         if(items[4])addText("│4  | RTX 3080 │    £260 │");
-        if(items[3] && items[4])addText("You have nothing");
+        if(!items[3] && !items[4])addText("You have nothing");
         addText("└───┴──────────┴─────────┘");
         addText("Enter the ID to buy/sell a item");
         addText("Enter 0 to exit");
