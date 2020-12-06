@@ -16,13 +16,12 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
 $(document).one('click', function(e) {
     document.getElementById("musicPlayer").play(); // Ensures music starts playing
 });
 
 $(document).click(function(e){
-    document.getElementById("input").focus();
+    document.getElementById("input").focus(); // Reselects input box
 });
 
 
