@@ -1,6 +1,7 @@
 let c;
 let ctx;
 let line = 60;
+let started = false;
 let player = {};
 let counter = 0;
 let currentLocationId = 0;
@@ -16,11 +17,26 @@ function sleep(ms) {
   }
   
 
+$(document).one('click', function(e) {
+    document.getElementById("minecraft").play();
+});
+
+function toggleMusic(){
+    let music = document.getElementById('minecraft');
+    let button = document.getElementById("playPauseButton");
+    if(music.paused){
+        music.play();
+        button.innerHTML = "<i class='fas fa-pause'></i>"
+    }else{
+        music.pause();
+        button.innerHTML = "<i class='fas fa-play'></i>"
+    }
+}
 
 $(document).ready(function (){
     draw();
     loadScript();
-    document.getElementById("minecraft").volume = 0.3;
+    document.getElementById("minecraft").volume = 0.7;
     let input = document.getElementById("input");
     input.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
@@ -28,6 +44,7 @@ $(document).ready(function (){
         }
     });
 });
+
 
 
 

@@ -35,26 +35,41 @@
     background-color: white;
     border-color: black;
 }
+
 #music{
-    color: white;
-    font-size: large;
     margin-left: 95%;
     margin-bottom: 10px;
     bottom:0;
     position:absolute;
+    width: fit-content;
+    text-align: center;
+    font-size: 0;
 }
  
 
 #cheatButton{
     background-color: red;
 }
+#restartButton{
+    background-color: red;
+}
 
 
 button{
-    width: 80%;
-    padding: 1% 2%;
+    width: 100%;
+    padding: 2% 2%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: large;
+}
+
+p{
+    font-size: large;
+    color: white;
+}
+
+
+#volumeUpButton, #volumeDownButton{
+    width: 50%;
 }

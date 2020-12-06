@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://kit.fontawesome.com/f7133d9001.js" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
     <script src="./locations.js"></script>
     <script src="./art.js"></script>
@@ -26,10 +27,13 @@
         </div>
     </div>
     <div id = "music">
-        <button onclick="cheat()" id="cheatButton">Cheat</button>
-        <p>Music Control</p>
-        <button onclick="document.getElementById('minecraft').play()">Play</button>
-        <button onclick="document.getElementById('minecraft').pause()">Pause</button>
+        <p>GAME</p>
+        <button onclick="location.reload()" id="restartButton">RESTART</button>
+        <button onclick="cheat()" id="cheatButton">CHEAT</button>
+        <p>MUSIC</p>
+        <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-pause'></i></button>
+        <button onclick="document.getElementById('minecraft').volume -= 0.1" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
+        <button onclick="document.getElementById('minecraft').volume += 0.1" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
         <audio autoplay preload loop id="minecraft">
             <source src="minecraft.mp3" type="audio/mpeg">
         </audio>
