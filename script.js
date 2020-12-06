@@ -14,15 +14,15 @@ player.inventory = [];
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  
+}
+
 
 $(document).one('click', function(e) {
-    document.getElementById("minecraft").play();
+    document.getElementById("musicPlayer").play();  // Ensures music starts playing
 });
 
 function toggleMusic(){
-    let music = document.getElementById('minecraft');
+    let music = document.getElementById('musicPlayer');
     let button = document.getElementById("playPauseButton");
     if(music.paused){
         music.play();
@@ -36,7 +36,7 @@ function toggleMusic(){
 $(document).ready(function (){
     draw();
     loadScript();
-    document.getElementById("minecraft").volume = 0.7;
+    document.getElementById("musicPlayer").volume = 0.7;
     let input = document.getElementById("input");
     input.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
@@ -46,11 +46,9 @@ $(document).ready(function (){
 });
 
 
-
-
 function draw(){
-    let height = (1249 / window.innerHeight)*(1249*0.97)
-    let width = (2560 / window.innerWidth)*(2560)
+    let height = (1249 / window.innerHeight)*(1249*0.97) // Sets canvas height to fit scaling
+    let width = (2560 / window.innerWidth)*(2560)   // Sets canvas width to fit scaling
     line = 20;
     canvas = document.getElementById("gameCanvas");
     document.getElementById("input").focus();
@@ -63,17 +61,17 @@ function draw(){
 
 
 function cheat(){
-      textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
-      document.getElementById("minecraft").volume = 1;
-      document.getElementById("minecraft").play();
-      document.getElementById("music").style.visibility = "hidden";
-      setInterval(function(){
-          textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
-          document.getElementById("game").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-          document.getElementById("input").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-      },100)
-      draw();
-      loadScript();
+    textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
+    document.getElementById("musicPlayer").volume = 1;
+    document.getElementById("musicPlayer").play();
+    document.getElementById("music").style.visibility = "hidden";
+    setInterval(function(){
+        textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
+        document.getElementById("game").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+        document.getElementById("input").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    },100)
+    draw();
+    loadScript();
 }
 
 function notCheats(){
@@ -87,13 +85,13 @@ function addText(text){
         ctx.fillStyle = textColour;
         text = text.split("\n");
         for(let i = 0;i<text.length;i++){  
-            ctx.fillStyle = textColour;
-            ctx.fillText(text[i],10,line);
+            ctx.fillStyle = textColour; //Resets the text color
+            ctx.fillText(text[i],10,line); //Adds text to canvas
             line += 20;
-            if (line > window.innerHeight -20 )scroll(20);
+            if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
         }
-        if (line > window.innerHeight -20 )scroll(20);
-   }
+        if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
+    }
 }
 
 function addArt(art){
@@ -119,9 +117,9 @@ function scroll(dy) {
 }
 
 function loadScript(){
-    if(currentLocationId != 5){
+    if(currentLocationId != 5){ //Checks if shop
         addText(locations[currentLocationId].script);
-        if(currentLocationId != 2 && currentLocationId != 9)addText("\nYou can :");
+        if(currentLocationId != 2 && currentLocationId != 9)addText("\nYou can :"); //Checks if the player can move
         addText(locations[currentLocationId].optionNames);
         if(locations[currentLocationId].items.length != 0){
             addText("\nOr pickup:");
@@ -130,26 +128,25 @@ function loadScript(){
     }else{
         loadShop()
     }
-    if(currentLocationId == 2){
-           addArt(asciiMario);
+    if(currentLocationId == 2){ //Checks for victory
+        addArt(asciiMario); 
     }
 }
 
 function loadShop(){
-        addText("    Welcome to the shop");
-        
-        addText("┌───┬──────────┬─────────┐");
-        addText("│ID │ ITEM     │    Price│");
-        if(!items[3] || !items[4])addText("├───┼─BUY──────┼─────────┤");
-        if(!items[3])addText("│1  | Torch    │    £10  │");
-        if(!items[4])addText("│2  | RTX 3080 │    £260 │");
-        if(items[3] || items[4])addText("├───┼─SELL─────┼─────────┤");
-        if(items[3])addText("│3  | Torch    │    £10  │");
-        if(items[4])addText("│4  | RTX 3080 │    £260 │");
-        addText("└───┴──────────┴─────────┘");
-        addText("Enter the ID to buy/sell a item");
-        addText("Enter 0 to exit");
-        addText("Your current balance is : £"+player.money);
+    addText("    Welcome to the shop");
+    addText("┌───┬──────────┬─────────┐");
+    addText("│ID │ ITEM     │    Price│");
+    if(!items[3] || !items[4])addText("├───┼─BUY──────┼─────────┤");
+    if(!items[3])addText("│1  | Torch    │    £10  │");
+    if(!items[4])addText("│2  | RTX 3080 │    £260 │");
+    if(items[3] || items[4])addText("├───┼─SELL─────┼─────────┤");
+    if(items[3])addText("│3  | Torch    │    £10  │");
+    if(items[4])addText("│4  | RTX 3080 │    £260 │");
+    addText("└───┴──────────┴─────────┘");
+    addText("Enter the ID to buy/sell a item");
+    addText("Enter 0 to exit");
+    addText("Your current balance is : £"+player.money);
 }
 
 function useShop(input){
@@ -220,7 +217,7 @@ function useShop(input){
                 addText("You don't have a RTX 3080 to sell")
             }
         break;
-
+        
     }
 }
 
@@ -266,7 +263,7 @@ function pickup(item){
         }
         areaItems.splice(areaItems.indexOf(item),1);
         locations[currentLocationId].items = areaItems;
-
+        
         
     }else{
         addText("You can not pickup "+item);
@@ -294,10 +291,10 @@ function parseInput(){
         if(locations[currentLocationId].optionID[i] == inputValue){
             let met = true;
             for(let x = 0; x<locations[locations[currentLocationId].optionMethod[i]].requirements.length;x++){
-                if(!items[locations[locations[currentLocationId].optionMethod[i]].requirements[x]])met = false;
+                if(!items[locations[locations[currentLocationId].optionMethod[i]].requirements[x]])met = false; //Find the requirements tied to the input given by the user using the 
             }
             if(met){
-                currentLocationId = locations[currentLocationId].optionMethod[i];
+                currentLocationId = locations[currentLocationId].optionMethod[i]; // Chages current loacation to requested location
                 draw();
                 loadScript();
                 found = true;
@@ -305,8 +302,8 @@ function parseInput(){
                 addText(locations[locations[currentLocationId].optionMethod[i]].errorScript);
                 found = true;
             }
-            }
         }
+    }
     if(!found){
         if(currentLocationId != 5){
             switch(input[0]){
@@ -348,7 +345,6 @@ function parseInput(){
                     addText("   Clear => Clears screen");
                     addText("   Look => Looks around");
                     addText("   Restart => Restarts the game");
-
                 break;
                 case "":
                 break;

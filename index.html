@@ -32,13 +32,14 @@
         <button onclick="cheat()" id="cheatButton">CHEAT</button>
         <p>MUSIC</p>
         <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-pause'></i></button>
-        <button onclick="document.getElementById('minecraft').volume -= 0.1" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
-        <button onclick="document.getElementById('minecraft').volume += 0.1" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
-        <audio autoplay preload loop id="minecraft">
+        <button onclick="document.getElementById('musicPlayer').volume -= 0.1" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
+        <button onclick="document.getElementById('musicPlayer').volume += 0.1" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
+        <audio autoplay preload loop id="musicPlayer">
             <source src="minecraft.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-    <div id="footer">
-    </div>
-</body>
-</html>
+            </audio>
+        </div>
+        <div id="footer">
+        </div>
+    </body>
+    </html>
+    
