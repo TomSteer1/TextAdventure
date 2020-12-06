@@ -32,8 +32,8 @@
         <button onclick="cheat()" id="cheatButton">CHEAT</button>
         <p>MUSIC</p>
         <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-pause'></i></button>
-        <button onclick="document.getElementById('musicPlayer').volume -= 0.1" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
-        <button onclick="document.getElementById('musicPlayer').volume += 0.1" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
+        <button onclick="if(document.getElementById('musicPlayer').volume-0.1 >= 0.1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume - 0.1) * 10)/10" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
+        <button onclick="if(document.getElementById('musicPlayer').volume+0.1 <= 1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume + 0.1) * 10)/10;" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
         <audio autoplay preload loop id="musicPlayer">
             <source src="minecraft.mp3" type="audio/mpeg">
             </audio>

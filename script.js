@@ -18,8 +18,13 @@ function sleep(ms) {
 
 
 $(document).one('click', function(e) {
-    document.getElementById("musicPlayer").play();  // Ensures music starts playing
+    document.getElementById("musicPlayer").play(); // Ensures music starts playing
 });
+
+$(document).click(function(e){
+    document.getElementById("input").focus();
+});
+
 
 function toggleMusic(){
     let music = document.getElementById('musicPlayer');
