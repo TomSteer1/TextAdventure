@@ -45,6 +45,11 @@ $(document).ready(function (){
 			parseInput();
 		}
 	});
+	window.addEventListener("keyup",function(event){
+		if(currentLocationId != 5)return;
+		$("#input").val("");
+		useShop(event.key);
+	});
 });
 
 function draw(){
@@ -118,6 +123,8 @@ function scroll(dy) {
 function loadScript(){
 	if(currentLocationId != 5){ //Checks if shop
 		addText(locations[currentLocationId].script);
+		document.getElementById("input").style.visibility = "visible";
+		document.getElementById("input").focus(); 
 		if(currentLocationId != 2 && currentLocationId != 9)addText("\nYou can :"); //Checks if the player can move
 		addText(locations[currentLocationId].optionNames);
 		if(locations[currentLocationId].items.length != 0){
@@ -133,6 +140,7 @@ function loadScript(){
 }
 
 function loadShop(){
+	document.getElementById("input").style.visibility = "hidden";
 	addText("    Welcome to the shop");
 	addText("┌───┬──────────┬─────────┐");
 	addText("│ID │ ITEM     │    Price│");
@@ -146,10 +154,10 @@ function loadShop(){
 	addText("Enter the ID to buy/sell a item");
 	addText("Enter 0 to exit");
 	addText("Your current balance is : £"+player.money);
+	useShop();
 }
 
 function useShop(input){
-	$("#input").val("");
 	switch(input){
 		case "0":
 			currentLocationId = 0;
@@ -218,6 +226,7 @@ function useShop(input){
 		break;
 		
 	}
+	
 }
 
 function manual(){
