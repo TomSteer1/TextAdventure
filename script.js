@@ -135,7 +135,8 @@ function loadScript(){
 		loadShop()
 	}
 	if(currentLocationId == 2){ //Checks for victory
-		addArt(asciiMario); 
+		addArt(asciiMario);
+		$("#inventory").hide()
 	}
 }
 
@@ -153,7 +154,7 @@ function loadShop(){
 	addText("└───┴──────────┴─────────┘");
 	addText("Enter the ID to buy/sell a item");
 	addText("Enter 0 to exit");
-	addText("Your current balance is : £"+player.money);
+	// addText("Your current balance is : £"+player.money);
 	useShop();
 }
 
@@ -174,6 +175,7 @@ function useShop(input){
 					addText("You have bought the TORCH");
 					addArt(asciiTorch);
 					player.inventory.push("TORCH");
+					$("#torch").css("visibility","visible");
 				}else{
 					addText("You already have the TORCH")
 				}
@@ -191,11 +193,12 @@ function useShop(input){
 					addText("You have bought the RTX 3080");
 					addArt(ascii3080);
 					player.inventory.push("RTX 3080");
+					$("#3080").css("visibility","visible");
 				}else{
-					addText("You already have the RTX 3030")
+					addText("You already have the RTX 3030");
 				}
 			}else{
-				addText("You need £260 to buy RTX 3080")
+				addText("You need £260 to buy RTX 3080");
 			}
 		break;
 		case "3":
@@ -206,6 +209,7 @@ function useShop(input){
 				loadScript();
 				addText("You sold the TORCH");
 				addArt(asciiTorch);
+				$("#torch").css("visibility","hidden");
 				player.inventory.splice(player.inventory.indexOf("TORCH"),1);
 			}else{
 				addText("You don't have a TORCH to sell")
@@ -218,15 +222,15 @@ function useShop(input){
 				draw();
 				loadScript();
 				addText("You sold the RTX 3080");
+				$("#3080").css("visibility","hidden");
 				addArt(ascii3080);
 				player.inventory.splice(player.inventory.indexOf("RTX 3080"),1);
 			}else{
 				addText("You don't have a RTX 3080 to sell")
 			}
 		break;
-		
 	}
-	
+	$("#balance").html("£" + player.money);
 }
 
 function manual(){
@@ -241,24 +245,28 @@ function pickup(item){
 				addText("You have picked up"); 
 				items[0] = true;
 				addArt(asciiManual);
+				$("#manual").css("visibility","visible");
 				player.inventory.push(item);
 			break;
 			case "KEY":
 				addText("You have picked up");
 				items[1] = true;
 				addArt(asciiKey);
+				$("#key").css("visibility","visible");
 				player.inventory.push(item);
 			break;
 			case "CAR KEY":
 				addText("You have picked up"); 
 				items[2] = true;
 				addArt(asciiCarKey);
+				$("#carKey").css("visibility","visible");
 				player.inventory.push(item);
 			break;
 			case "TORCH":
 				addText("You have picked up"); 
 				items[3] = true;
 				addArt(asciiTorch);
+				$("#torch").css("visibility","visible");
 				player.inventory.push(item);
 			break;
 			case "MONEY":
@@ -266,6 +274,7 @@ function pickup(item){
 				locations[currentLocationId].moneyValue = 0;
 				addText("You have picked up");
 				addArt(asciiMoney);
+				$("#balance").html("£" + player.money);
 				addText("Your balance is now £" + player.money);
 			break;
 		}

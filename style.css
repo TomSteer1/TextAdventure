@@ -73,3 +73,17 @@ p{
 #volumeUpButton, #volumeDownButton{
     width: 50%;
 }
+
+
+#inventory{
+    color: #20C20E;
+    right: 0;
+    position:absolute;
+    font-size: large;
+}
+
+
+#items{
+    background-color: grey;
+    width: fit-content
+}
