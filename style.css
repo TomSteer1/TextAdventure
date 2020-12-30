@@ -80,10 +80,15 @@ p{
     right: 0;
     position:absolute;
     font-size: large;
+    
 }
 
 
 #items{
-    background-color: grey;
-    width: fit-content
+    background: rgba(128,128,128,0.3);
+    width: fit-content;
+    border: white;
+    border-width: medium;
+    border-radius: 10px;
+    border-style: solid;
 }
