@@ -43,7 +43,7 @@ Xo. .. .;kNKo' 'O\n
 Kl,l0Kx, .k  XkkX\n                       
        XOkX        `;                     
 
-let asciiCarKey = `Car Key
+let asciiCarKey = `
                    XX 0ddxOKX           \n 
            Kxc:cdO000kxkKXXXXXKX        \n 
         Kxc.WW.;,;O0ddOKK    XOO        \n 
