@@ -93,6 +93,7 @@ function addText(text){
 			ctx.fillText(text[i],10,line); //Adds text to canvas
 			line += 20;
 			if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
+			document.getElementById("input").style.top = (line-10) + "px";
 		}
 		if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
 	}

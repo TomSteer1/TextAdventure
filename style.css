@@ -29,11 +29,13 @@
     position: fixed;
     width: 60%;
     height: 30px;
-    left: 10;
-    bottom: 0;
-    font-size: larger;
-    background-color: white;
-    border-color: black;
+    left: 5px;
+    bottom: 5px;
+    font-size: xx-large;
+    background-color: inherit;
+    border-style: none;
+    color: white;
+    outline: none;
 }
 
 #music{
