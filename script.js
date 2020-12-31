@@ -107,9 +107,11 @@ function addArt(art){
 		ctx.fillText(art[i],10,line);
 		line += 10;
 		if (line > window.innerHeight) scroll(10);
+		document.getElementById("input").style.top = (line-10) + "px";
 	}
 	line +=10;
 	if (line > window.innerHeight) scroll(10);
+	document.getElementById("input").style.top = (line-10) + "px";
 }
 
 function scroll(dy) {
