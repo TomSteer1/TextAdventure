@@ -11,6 +11,21 @@ let textColour = "#20C20E"
 player.money = 0;
 player.inventory = [];
 
+
+let keys = [
+	new Audio("./sounds/key1.mp3"),
+	new Audio("./sounds/key2.mp3"),
+	new Audio("./sounds/key3.mp3"),
+	new Audio("./sounds/key4.mp3")
+];
+
+function typeSound() {
+	let i = Math.floor(Math.random() * keys.length);
+	keys[i].currentTime = 0;
+	keys[i].play();
+}
+
+
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -40,6 +55,9 @@ $(document).ready(function (){
 	loadScript();
 	document.getElementById("musicPlayer").volume = 0.7;
 	let input = document.getElementById("input");
+	input.addEventListener("keydown", function(event) {
+		typeSound();
+	});
 	input.addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
 			parseInput();
@@ -53,15 +71,16 @@ $(document).ready(function (){
 });
 
 function draw(){
-	let height = (1249 / window.innerHeight)*(1249*0.97) // Sets canvas height to fit scaling
-	let width = (2560 / window.innerWidth)*(2560)   // Sets canvas width to fit scaling
+	let height = window.innerHeight *0.99; // Sets canvas height to fit scaling
+	let width = window.innerWidth;   // Sets canvas width to fit scaling
 	line = 20;
 	canvas = document.getElementById("gameCanvas");
 	document.getElementById("input").focus();
 	ctx = canvas.getContext("2d");
 	canvas.width = width;
 	canvas.height = height;
-	ctx.clearRect(0, 0, width, height);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	$("#inputIndicator").val("> ");
 }
 
 function cheat(){
@@ -84,6 +103,7 @@ function notCheats(){
 }
 
 function addText(text){
+	if(currentLocationId != 5)document.getElementById("inputIndicator").innerHTML = "> ";
 	if(text != -1){    
 		ctx.font = "20px monospace"
 		ctx.fillStyle = textColour;
@@ -92,10 +112,10 @@ function addText(text){
 			ctx.fillStyle = textColour; //Resets the text color
 			ctx.fillText(text[i],10,line); //Adds text to canvas
 			line += 20;
-			if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
+			if (line > (window.innerHeight*0.99) -20 )scroll(20); // Auto Scrolls if necessary 
 			document.getElementById("inputArea").style.top = (line-10) + "px";
 		}
-		if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
+		if (line > (window.innerHeight*0.99) -20 )scroll(20); // Auto Scrolls if necessary 
 	}
 }
 
@@ -106,11 +126,11 @@ function addArt(art){
 	for(let i = 0;i<art.length;i++){  
 		ctx.fillText(art[i],10,line);
 		line += 10;
-		if (line > window.innerHeight) scroll(10);
+		if (line > (window.innerHeight*0.99) ) scroll(10);
 		document.getElementById("inputArea").style.top = (line-10) + "px";
 	}
 	line +=10;
-	if (line > window.innerHeight) scroll(10);
+	if (line > (window.innerHeight*0.99)) scroll(10);
 	document.getElementById("inputArea").style.top = (line-10) + "px";
 }
 
@@ -119,7 +139,7 @@ function scroll(dy) {
 	ctx.putImageData(imgData, 0, -dy);
 	ctx.clearRect(0, window.innerHeight-dy, window.innerWidth, dy);
 	line -= dy;
-	if (line > window.innerHeight - 20)scroll(20);
+	if (line > (window.innerHeight*0.99) - 20)scroll(20);
 	
 }
 
@@ -144,6 +164,7 @@ function loadScript(){
 }
 
 function loadShop(){
+	document.getElementById("inputIndicator").innerHTML = "";
 	document.getElementById("input").style.visibility = "hidden";
 	addText("    Welcome to the shop");
 	addText("┌───┬──────────┬─────────┐");
@@ -305,7 +326,6 @@ function parseInput(){
 	let input = $("#input").val().toUpperCase();
 	input = input.split(" ");
 	$("#input").val("");
-	console.log(input);
 	found = false;
 	for(let i = 0;i<locations[currentLocationId].optionID.length;i++){
 		inputValue = parseInt(input[0],10);

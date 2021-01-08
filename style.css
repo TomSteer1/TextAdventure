@@ -52,12 +52,13 @@
     border-style: none;
     color: white;
     outline: none;
+    width: fit-content;
 }
 
 #music{
-    margin-left: 95%;
     margin-bottom: 10px;
     bottom:0;
+    right: 0;
     position:absolute;
     width: fit-content;
     text-align: center;
