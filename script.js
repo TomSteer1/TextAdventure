@@ -4,7 +4,7 @@ let line = 60;
 let started = false;
 let player = {};
 let counter = 0;
-let currentLocationId = 0;
+let currentLocationId = "MusicMenu";
 let items = [false,false,false,false,false];
 let itemName = ["Manual","Key","Car Key","Torch","3080"];
 let textColour = "#20C20E"
@@ -30,10 +30,6 @@ function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-$(document).one('click', function(e) {
-	document.getElementById("musicPlayer").play(); // Ensures music starts playing
-});
-
 $(document).click(function(e){
 	document.getElementById("input").focus(); // Reselects input box
 });
@@ -52,15 +48,33 @@ function toggleMusic(){
 
 $(document).ready(function (){
 	draw();
-	loadScript();
-	document.getElementById("musicPlayer").volume = 0.7;
+	addText("Do you want music? \n	Press 1 for yes \n	Press 2 for no");
 	let input = document.getElementById("input");
 	input.addEventListener("keydown", function(event) {
 		typeSound();
 	});
 	input.addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
-			parseInput();
+			if(currentLocationId != "MusicMenu"){
+				parseInput();
+			}else{
+				let input = $("#input").val().toUpperCase();
+				input = input.split(" ");
+				$("#input").val("");
+				let button = document.getElementById("playPauseButton");
+				if(input == "1"){		
+					document.getElementById("musicPlayer").play();
+					button.innerHTML = "<i class='fas fa-pause'></i>";
+					currentLocationId = 0;
+					draw();
+					loadScript();
+				}else if(input == "2"){
+					button.innerHTML = "<i class='fas fa-play'></i>";
+					currentLocationId = 0;
+					draw();
+					loadScript();
+				}
+			}
 		}
 	});
 	window.addEventListener("keyup",function(event){
