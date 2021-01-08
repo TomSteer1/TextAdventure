@@ -58,22 +58,7 @@ $(document).ready(function (){
 			if(currentLocationId != "MusicMenu"){
 				parseInput();
 			}else{
-				let input = $("#input").val().toUpperCase();
-				input = input.split(" ");
-				$("#input").val("");
-				let button = document.getElementById("playPauseButton");
-				if(input == "1"){		
-					document.getElementById("musicPlayer").play();
-					button.innerHTML = "<i class='fas fa-pause'></i>";
-					currentLocationId = 0;
-					draw();
-					loadScript();
-				}else if(input == "2"){
-					button.innerHTML = "<i class='fas fa-play'></i>";
-					currentLocationId = 0;
-					draw();
-					loadScript();
-				}
+				musicMenu();
 			}
 		}
 	});
@@ -83,6 +68,28 @@ $(document).ready(function (){
 		useShop(event.key);
 	});
 });
+
+function musicMenu(){
+	let input = $("#input").val().toUpperCase();
+	input = input.split(" ");
+	$("#input").val("");
+	let button = document.getElementById("playPauseButton");
+	if(input == "1"){		
+		document.getElementById("musicPlayer").play();
+		button.innerHTML = "<i class='fas fa-pause'></i>";
+		currentLocationId = 0;
+		draw();
+		loadScript();
+	}else if(input == "2"){
+		button.innerHTML = "<i class='fas fa-play'></i>";
+		currentLocationId = 0;
+		draw();
+		loadScript();
+	}
+}
+
+
+
 
 function draw(){
 	let height = window.innerHeight *0.99; // Sets canvas height to fit scaling
