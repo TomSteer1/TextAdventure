@@ -25,13 +25,29 @@
     display: inline;
 }
 
-#input{ 
+
+#inputArea{
     position: fixed;
     width: 60%;
     height: 30px;
     left: 10px;
     bottom: 5px;
     font-size: xx-large;
+    background-color: inherit;
+    border-style: none;
+    outline: none;
+}
+
+
+#inputIndicator{
+    display: inline;
+    color: #20C20E;
+}
+
+
+#input{ 
+    font-size: xx-large;
+    display: inline;
     background-color: inherit;
     border-style: none;
     color: white;

@@ -93,7 +93,7 @@ function addText(text){
 			ctx.fillText(text[i],10,line); //Adds text to canvas
 			line += 20;
 			if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
-			document.getElementById("input").style.top = (line-10) + "px";
+			document.getElementById("inputArea").style.top = (line-10) + "px";
 		}
 		if (line > window.innerHeight -20 )scroll(20); // Auto Scrolls if necessary 
 	}
@@ -107,11 +107,11 @@ function addArt(art){
 		ctx.fillText(art[i],10,line);
 		line += 10;
 		if (line > window.innerHeight) scroll(10);
-		document.getElementById("input").style.top = (line-10) + "px";
+		document.getElementById("inputArea").style.top = (line-10) + "px";
 	}
 	line +=10;
 	if (line > window.innerHeight) scroll(10);
-	document.getElementById("input").style.top = (line-10) + "px";
+	document.getElementById("inputArea").style.top = (line-10) + "px";
 }
 
 function scroll(dy) {
@@ -305,6 +305,7 @@ function parseInput(){
 	let input = $("#input").val().toUpperCase();
 	input = input.split(" ");
 	$("#input").val("");
+	console.log(input);
 	found = false;
 	for(let i = 0;i<locations[currentLocationId].optionID.length;i++){
 		inputValue = parseInt(input[0],10);
