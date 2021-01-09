@@ -10,6 +10,8 @@ let itemName = ["Manual","Key","Car Key","Torch","3080"];
 let textColour = "white"
 let locations = $.extend(true, {}, originalLocations );
 let today;
+let enteredCommands = [];
+let commandCount = 0;
 var ip;
 player.money = 0;
 player.inventory = [];
@@ -87,11 +89,18 @@ $(document).ready(function (){
 	});
 	input.addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
+			commandCount = enteredCommands.length + 1;
 			if(currentLocationId != "Shell"){
 				parseInput();
 			}else{
 				shellMenu();
 			}
+		}else if(event.keyCode === 38){
+			if(commandCount > 0)commandCount--;
+			$("#input").val(enteredCommands[commandCount]);
+		}else if(event.keyCode === 40){
+			if(commandCount < enteredCommands.length)commandCount++;
+			$("#input").val(enteredCommands[commandCount]);
 		}
 	});
 	window.addEventListener("keyup",function(event){
@@ -105,8 +114,8 @@ $(document).ready(function (){
 function shellMenu(){
 	let input = $("#input").val();
 	input = input.split(" ");
-	console.log(input);
-	addText("root@mainframe:~$ " + $("#input").val(),"white");
+	enteredCommands.push($("#input").val());
+	if(!loaded)addText("root@mainframe:~$ " + $("#input").val(),"white");
 	$("#input").val("");
 	if(!loaded){
 		switch(input[0]){
@@ -129,6 +138,8 @@ function shellMenu(){
 				loaded = true;
 				$("#inputIndicator").html("> ");
 				$("#inputIndicator").css("color","#20C20E");
+				enteredCommands = [];
+				commandCount = 0;
 			break;
 			default:
 				if(input[0] != ""){
@@ -145,11 +156,15 @@ function shellMenu(){
 			document.getElementById("musicPlayer").play();
 			button.innerHTML = "<i class='fas fa-pause'></i>";
 			currentLocationId = 0;
+			enteredCommands = [];
+			commandCount = 0;
 			draw();
 			loadScript();
 		}else if(input == "2"){
 			button.innerHTML = "<i class='fas fa-play'></i>";
 			currentLocationId = 0;
+			enteredCommands = [];
+			commandCount = 0;
 			draw();
 			loadScript();
 		}
@@ -409,10 +424,22 @@ function viewInventory(){
 	}
 }
 
+function helpMenu(){
+	addText("Available Commands:");
+	addText("   Take => Take item");
+	addText("   Inventory(inv) => View Inventory");
+	addText("   Balance(bal) => View Balance");
+	addText("   Clear => Clears screen");
+	addText("   Look => Looks around");
+	addText("   Restart => Restarts the game");
+}
+
+
 function parseInput(){
 	let input = $("#input").val().toUpperCase();
 	addText("> " + $("#input").val(),"white");
 	input = input.split(" ");
+	enteredCommands.push($("#input").val());
 	$("#input").val("");
 	found = false;
 	for(let i = 0;i<locations[currentLocationId].optionID.length;i++){
@@ -464,16 +491,13 @@ function parseInput(){
 					addText("Your current balance is : £"+player.money);
 				break;
 				case "RESTART":
-					location.reload()
+					restart();
 				break;
 				case "?":
-					addText("Available Commands:");
-					addText("   Take => Take item");
-					addText("   Inventory(inv) => View Inventory");
-					addText("   Balance(bal) => View Balance");
-					addText("   Clear => Clears screen");
-					addText("   Look => Looks around");
-					addText("   Restart => Restarts the game");
+					helpMenu();
+				break;
+				case "HRLP":
+					helpMenu();
 				break;
 				case "":
 				break;
