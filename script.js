@@ -200,7 +200,8 @@ function loadScript(){
 	}
 	if(currentLocationId == 2){ //Checks for victory
 		addArt(asciiMario);
-		$("#inventory").hide()
+		$("#inventory").hide();
+		$("#inputArea").hide();
 	}
 }
 
