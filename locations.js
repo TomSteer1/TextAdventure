@@ -4,7 +4,7 @@ let originalLocations = [
         name : "Driveway",
         script : "You have woken up in someones driveway \nYour head hurts badly \nYou check your phone but the battery is dead \nYou have a look around  \nYou notice there is a mineshaft across from the house \nAlso down the road there you notice a shop \nThre is also a car in the driveway" ,
         errorScript : "BROKE",
-        optionNames: "1) Go to House \n2) Inspect Car \n3) Walk to shop \n4) Go down mineshaft",
+        optionNames: "1) Go to House \n2)Car \n3) Walk to shop \n4) Go down mineshaft",
         optionID: [1,2,3,4],
         optionMethod: [6,1,5,3],
         items : ["MANUAL"],
@@ -14,7 +14,7 @@ let originalLocations = [
     {
         id : 1,
         name : "Car",
-        script : "You go and inspect the car \nYou notice a phone charger on the dashboard \nYou also find a note on the windshield that reads \n'Sorry for hitting your car here is £10 to pay for the damage'",
+        script : "You go and look at the car \nYou notice a phone charger on the dashboard \nYou also find a note on the windshield that reads \n'Sorry for hitting your car here is £10 to pay for the damage'",
         optionNames: "1) Go back to the driveway \n2) Unlock the car",
         errorScript : "BROKE",
         optionID: [1,2],
@@ -86,7 +86,7 @@ let originalLocations = [
     {
         id : 7,
         name : "Bedroom",
-        script : "You have entered the bedroom \nThe greasy kid tells you \n'The car keys are on the table",
+        script : "You have entered the bedroom \nThe greasy kid tells you \nThe car keys are on the table",
         errorScript : "There is a greasy kid blocking your way \nYou'll need to show him a RTX 3080 to appease him",
         optionNames: "1) Go back downstairs",
         optionID: [1],
