@@ -19,6 +19,7 @@ function restart(){
 	items = [false,false,false,false,false];
 	itemName = ["Manual","Key","Car Key","Torch","3080"];
 	player.money = 0;
+	$("#balance").html("£" + player.money);
 	player.inventory = [];
 	$("#torch").css("visibility","hidden");
 	$("#manual").css("visibility","hidden");
