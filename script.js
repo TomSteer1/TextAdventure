@@ -120,7 +120,6 @@ function shellMenu(){
 	if(!loaded){
 		switch(input[0]){
 			case "ls":
-				console.log("hey");
 				addText("textAdventure","green");
 			break;
 			case "./textAdventure":
