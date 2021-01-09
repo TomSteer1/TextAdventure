@@ -4,7 +4,7 @@ let originalLocations = [
         name : "Driveway",
         script : "You have woken up in someones driveway \nYour head hurts badly \nYou check your phone but the battery is dead \nYou have a look around  \nYou notice there is a mineshaft across from the house \nAlso down the road there you notice a shop \nThre is also a car in the driveway" ,
         errorScript : "BROKE",
-        optionNames: "1) Go to House \n2)Car \n3) Walk to shop \n4) Go down mineshaft",
+        optionNames: "1) Go to House \n2) Car \n3) Walk to shop \n4) Go down mineshaft",
         optionID: [1,2,3,4],
         optionMethod: [6,1,5,3],
         items : ["MANUAL"],
