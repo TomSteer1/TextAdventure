@@ -40,19 +40,20 @@
 
 
 #inputIndicator{
+    font-size: 20px;
     display: inline;
-    color: #20C20E;
+    color: white;
 }
 
 
 #input{ 
-    font-size: xx-large;
+    font-size: 20px;
     display: inline;
     background-color: inherit;
     border-style: none;
     color: white;
     outline: none;
-    width: 80%;
+    width: 70%;
 }
 
 #music{

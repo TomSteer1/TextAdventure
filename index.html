@@ -24,7 +24,7 @@
 <body>
     <div id="header"></div>
     <div id="game" class="ui-widget-content">
-        <div id = inventory>
+        <div id = inventory style="visibility: hidden;">
             <h1>Balance:</h1>
             <p style="font-size: xx-large;" id = "balance">£0</p>
             <h1>Inventory:</h1>
@@ -52,12 +52,12 @@
             <canvas id="gameCanvas"></canvas>
         </div>
         <div id="inputArea">
-            <p id="inputIndicator">> </p>
+            <p id="inputIndicator">root@mainframe:~$</p>
             <input id="input" autocomplete="off" autofocus></input>
             <!-- <span id="input" class="textarea" role="textbox" contenteditable></span> -->
         </div>
     </div>
-    <div id = "music">
+    <div id = "music" style="visibility: hidden;">
         <p>GAME</p>
         <button onclick="restart()" id="restartButton">RESTART</button>
         <!-- <button onclick="cheat()" id="cheatButton">CHEAT</button> -->

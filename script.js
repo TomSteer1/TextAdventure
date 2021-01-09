@@ -1,17 +1,18 @@
 let c;
 let ctx;
 let line = 60;
-let started = false;
+let loaded = false;
 let player = {};
 let counter = 0;
-let currentLocationId = "MusicMenu";
+let currentLocationId = "Shell";
 let items = [false,false,false,false,false];
 let itemName = ["Manual","Key","Car Key","Torch","3080"];
-let textColour = "#20C20E"
+let textColour = "white"
 let locations = $.extend(true, {}, originalLocations );
+let today;
+var ip;
 player.money = 0;
 player.inventory = [];
-
 
 function restart(){
 	currentLocationId = 0;
@@ -30,7 +31,11 @@ function restart(){
 	loadScript();
 }
 
-
+function getIP(){
+	fetch("https://icanhazip.com").then(res => res.text()).then(function(data){
+		return data.toString();
+	});
+}
 
 let keys = [
 	new Audio("./sounds/key1.mp3"),
@@ -68,17 +73,24 @@ function toggleMusic(){
 
 $(document).ready(function (){
 	draw();
-	addText("Do you want music? \nNOTE: This can be changed later in the bottom right \n	Press 1 for yes \n	Press 2 for no");
+	today = new Date();
+	today = today.toUTCString();
+	fetch("https://icanhazip.com").then(res => res.text()).then(function(data){
+		ip = data;
+		addText(`Welcome to Ubuntu 20.04.1 LTS (GNU/Linux 5.4.0-54-generic x86_64)\n\n * Documentation:  https://help.ubuntu.com\n * Management:     https://landscape.canonical.com\n * Support:        https://ubuntu.com/advantage\n\n  System information as of ${today}\n\n  System load:  0.17              Processes:             115\n  Usage of /:   5.7% of 38.60GB   Users logged in:       0\n  Memory usage: 68%               IPv4 address for ens3: ${ip}\n  Swap usage:   0%\n\n * Introducing self-healing high availability clusters in MicroK8s.\n   Simple, hardened, Kubernetes for production, from RaspberryPi to DC.\n\n     https://microk8s.io/high-availability\n`)
+	
+	});
+	document.getElementById("inputArea").style.top = (line-10) + "px";
 	let input = document.getElementById("input");
 	input.addEventListener("keydown", function(event) {
 		typeSound();
 	});
 	input.addEventListener("keyup", function(event) {
 		if (event.keyCode === 13) {
-			if(currentLocationId != "MusicMenu"){
+			if(currentLocationId != "Shell"){
 				parseInput();
 			}else{
-				musicMenu();
+				shellMenu();
 			}
 		}
 	});
@@ -89,26 +101,60 @@ $(document).ready(function (){
 	});
 });
 
-function musicMenu(){
-	let input = $("#input").val().toUpperCase();
+
+function shellMenu(){
+	let input = $("#input").val();
 	input = input.split(" ");
+	console.log(input);
+	addText("root@mainframe:~$ " + $("#input").val(),"white");
 	$("#input").val("");
-	let button = document.getElementById("playPauseButton");
-	if(input == "1"){		
-		document.getElementById("musicPlayer").play();
-		button.innerHTML = "<i class='fas fa-pause'></i>";
-		currentLocationId = 0;
-		draw();
-		loadScript();
-	}else if(input == "2"){
-		button.innerHTML = "<i class='fas fa-play'></i>";
-		currentLocationId = 0;
-		draw();
-		loadScript();
+	if(!loaded){
+		switch(input[0]){
+			case "ls":
+				console.log("hey");
+				addText("textAdventure","green");
+			break;
+			case "./textAdventure":
+				textColour = "#20C20E"
+				draw();
+				addText("Loading Game...");
+				sleep(1000);
+				addText("Unpacking assets");
+				sleep(1000);
+				addText("Drawing inventory");
+				$("#inventory").css("visibility","visible");
+				addText("Drawing controls");
+				$("#music").css("visibility","visible");
+				addText("Do you want music? \nNOTE: This can be changed later in the bottom right \n	Press 1 for yes \n	Press 2 for no");
+				loaded = true;
+				$("#inputIndicator").html("> ");
+				$("#inputIndicator").css("color","#20C20E");
+			break;
+			default:
+				if(input[0] != ""){
+					addText(`Command '${input[0]}' not found`);
+				}else{
+					addText("");
+				}
+			break;
+				
+		}
+	}else{
+		let button = document.getElementById("playPauseButton");
+		if(input == "1"){		
+			document.getElementById("musicPlayer").play();
+			button.innerHTML = "<i class='fas fa-pause'></i>";
+			currentLocationId = 0;
+			draw();
+			loadScript();
+		}else if(input == "2"){
+			button.innerHTML = "<i class='fas fa-play'></i>";
+			currentLocationId = 0;
+			draw();
+			loadScript();
+		}
 	}
 }
-
-
 
 
 function draw(){
@@ -121,7 +167,6 @@ function draw(){
 	canvas.width = width;
 	canvas.height = height;
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
-	$("#inputIndicator").val("> ");
 }
 
 function cheat(){
@@ -144,7 +189,7 @@ function notCheats(){
 }
 
 function addText(text , fontColour = textColour){
-	if(currentLocationId != 5)document.getElementById("inputIndicator").innerHTML = "> ";
+	if(currentLocationId != 5 && currentLocationId != "Shell")document.getElementById("inputIndicator").innerHTML = "> ";
 	if(text != -1){    
 		ctx.font = "20px monospace"
 		ctx.fillStyle = fontColour;
