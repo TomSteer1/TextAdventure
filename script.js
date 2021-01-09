@@ -8,8 +8,27 @@ let currentLocationId = "MusicMenu";
 let items = [false,false,false,false,false];
 let itemName = ["Manual","Key","Car Key","Torch","3080"];
 let textColour = "#20C20E"
+let locations = $.extend(true, {}, originalLocations );
 player.money = 0;
 player.inventory = [];
+
+
+function restart(){
+	currentLocationId = 0;
+	locations = $.extend(true, {}, originalLocations );
+	items = [false,false,false,false,false];
+	itemName = ["Manual","Key","Car Key","Torch","3080"];
+	player.money = 0;
+	player.inventory = [];
+	$("#torch").css("visibility","hidden");
+	$("#manual").css("visibility","hidden");
+	$("#key").css("visibility","hidden");
+	$("#3080").css("visibility","hidden");
+	$("#carKey").css("visibility","hidden");
+	draw();
+	loadScript();
+}
+
 
 
 let keys = [
@@ -48,7 +67,7 @@ function toggleMusic(){
 
 $(document).ready(function (){
 	draw();
-	addText("Do you want music? \n	Press 1 for yes \n	Press 2 for no");
+	addText("Do you want music? \nNOTE: This can be changed later in the bottom right \n	Press 1 for yes \n	Press 2 for no");
 	let input = document.getElementById("input");
 	input.addEventListener("keydown", function(event) {
 		typeSound();

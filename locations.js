@@ -1,4 +1,4 @@
-let locations = [
+let originalLocations = [
     {
         id : 0,
         name : "Driveway",
