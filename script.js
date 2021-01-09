@@ -143,14 +143,14 @@ function notCheats(){
 	player.money = 30000000;
 }
 
-function addText(text){
+function addText(text , fontColour = textColour){
 	if(currentLocationId != 5)document.getElementById("inputIndicator").innerHTML = "> ";
 	if(text != -1){    
 		ctx.font = "20px monospace"
-		ctx.fillStyle = textColour;
+		ctx.fillStyle = fontColour;
 		text = text.split("\n");
 		for(let i = 0;i<text.length;i++){  
-			ctx.fillStyle = textColour; //Resets the text color
+			ctx.fillStyle = fontColour; //Resets the text color
 			ctx.fillText(text[i],10,line); //Adds text to canvas
 			line += 20;
 			if (line > (window.innerHeight*0.99) -20 )scroll(20); // Auto Scrolls if necessary 
@@ -366,6 +366,7 @@ function viewInventory(){
 
 function parseInput(){
 	let input = $("#input").val().toUpperCase();
+	addText("> " + $("#input").val(),"white");
 	input = input.split(" ");
 	$("#input").val("");
 	found = false;
