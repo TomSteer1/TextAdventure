@@ -148,7 +148,6 @@ function addText(text , fontColour = textColour){
 	if(text != -1){    
 		ctx.font = "20px monospace"
 		ctx.fillStyle = fontColour;
-		ctx.shadowBlur = 4;
 		text = text.split("\n");
 		for(let i = 0;i<text.length;i++){  
 			ctx.fillStyle = fontColour; //Resets the text color
@@ -164,7 +163,6 @@ function addText(text , fontColour = textColour){
 function addArt(art){
 	ctx.font = "20px monospace"
 	ctx.fillStyle = textColour;
-	ctx.shadowBlur = 4;
 	art = art.split("\n");
 	for(let i = 0;i<art.length;i++){  
 		ctx.fillText(art[i],10,line);
