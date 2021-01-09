@@ -106,6 +106,7 @@ p{
 #items{
     background: rgba(128,128,128,0.3);
     width: fit-content;
+    padding-left: 5px;
     border: white;
     border-width: medium;
     border-radius: 10px;
