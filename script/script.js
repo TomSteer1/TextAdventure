@@ -40,10 +40,10 @@ function getIP(){
 }
 
 let keys = [
-	new Audio("./sounds/key1.mp3"),
-	new Audio("./sounds/key2.mp3"),
-	new Audio("./sounds/key3.mp3"),
-	new Audio("./sounds/key4.mp3")
+	new Audio("./sound/key1.mp3"),
+	new Audio("./sound/key2.mp3"),
+	new Audio("./sound/key3.mp3"),
+	new Audio("./sound/key4.mp3")
 ];
 
 function typeSound() {
