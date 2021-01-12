@@ -53,10 +53,6 @@ function typeSound() {
 }
 
 
-function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 $(document).click(function(e){
 	document.getElementById("input").focus(); // Reselects input box
 });
@@ -74,8 +70,8 @@ function toggleMusic(){
 }
 
 function help(){
-	addText("Use ls to find available files");
-	addText("The prefix ./ is used to run executable files indicated with a green colour");
+	addText("Use ls to find available files","orange");
+	addText("The prefix ./ is used to run executable files indicated with a green colour","orange");
 }
 
 $(document).ready(function (){
@@ -132,9 +128,7 @@ function shellMenu(){
 				$("#helpButton").remove();
 				draw();
 				addText("Loading Game...");
-				sleep(1000);
 				addText("Unpacking assets");
-				sleep(1000);
 				addText("Drawing inventory");
 				$("#inventory").css("visibility","visible");
 				addText("Drawing controls");
