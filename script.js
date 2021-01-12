@@ -73,6 +73,11 @@ function toggleMusic(){
 	}
 }
 
+function help(){
+	addText("Use ls to find available files");
+	addText("The prefix ./ is used to run executable files indicated with a green colour");
+}
+
 $(document).ready(function (){
 	draw();
 	today = new Date();
@@ -124,6 +129,7 @@ function shellMenu(){
 			break;
 			case "./textAdventure":
 				textColour = "#20C20E"
+				$("#helpButton").remove();
 				draw();
 				addText("Loading Game...");
 				sleep(1000);
@@ -132,7 +138,7 @@ function shellMenu(){
 				addText("Drawing inventory");
 				$("#inventory").css("visibility","visible");
 				addText("Drawing controls");
-				$("#music").css("visibility","visible");
+				$("#menu").css("visibility","visible");
 				addText("Do you want music? \nNOTE: This can be changed later in the bottom right \n	Press 1 for yes \n	Press 2 for no");
 				loaded = true;
 				$("#inputIndicator").html("> ");
@@ -187,7 +193,7 @@ function cheat(){
 	textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
 	document.getElementById("musicPlayer").volume = 1;
 	document.getElementById("musicPlayer").play();
-	document.getElementById("music").style.visibility = "hidden";
+	document.getElementById("menu").style.visibility = "hidden";
 	setInterval(function(){
 		textColour = "#" + Math.floor(Math.random()*16777215).toString(16);
 		document.getElementById("game").style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
