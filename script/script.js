@@ -12,7 +12,9 @@ let locations = $.extend(true, {}, originalLocations );
 let today;
 let enteredCommands = [];
 let commandCount = 0;
-var ip;
+let helpCount = 0;
+let ip;
+let i = 0;
 player.money = 0;
 player.inventory = [];
 
@@ -69,9 +71,33 @@ function toggleMusic(){
 	}
 }
 
+function typeHelp(){
+	let input = "./textAdventure"
+	if (i < input.length) {
+		let value = $("#input").val() + input.charAt(i);
+		$("#input").val(value)
+		i++;
+		setTimeout(typeHelp, 100);
+	  }else{
+		setTimeout(shellMenu, 300);
+	  }
+}
+
 function help(){
-	addText("Use ls to find available files","orange");
-	addText("The prefix ./ is used to run executable files indicated with a green colour","orange");
+	switch(helpCount){
+		case 0:
+			addText("Use ls to find available files","orange");
+			addText("The prefix ./ is used to run executable files indicated with a green colour","orange");
+		break;
+		case 1:
+			addText("Try ./textAdventure","orange");
+		break;
+		case 2:
+			addText("Fine I'll start it for you","red");
+			typeHelp();
+		break;
+	}
+	helpCount++;
 }
 
 $(document).ready(function (){
