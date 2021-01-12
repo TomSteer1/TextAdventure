@@ -10,8 +10,8 @@
     <!-- Icon Imports -->
     <script src="https://kit.fontawesome.com/f7133d9001.js" crossorigin="anonymous"></script>
     <!-- Local Imports -->
-    <script src="./script.js"></script>
     <script src="./locations.js"></script>
+    <script src="./script.js"></script>
     <script src="./art.js"></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./animations.css">
@@ -24,7 +24,7 @@
 <body>
     <div id="header"></div>
     <div id="game" class="ui-widget-content">
-        <div id = inventory>
+        <div id = inventory style="visibility: hidden;">
             <h1>Balance:</h1>
             <p style="font-size: xx-large;" id = "balance">£0</p>
             <h1>Inventory:</h1>
@@ -52,19 +52,19 @@
             <canvas id="gameCanvas"></canvas>
         </div>
         <div id="inputArea">
-            <p id="inputIndicator">> </p>
+            <p id="inputIndicator">root@mainframe:~$</p>
             <input id="input" autocomplete="off" autofocus></input>
         </div>
     </div>
-    <div id = "music">
+    <div id = "music" style="visibility: hidden;">
         <p>GAME</p>
-        <button onclick="location.reload()" id="restartButton">RESTART</button>
+        <button onclick="restart()" id="restartButton">RESTART</button>
         <!-- <button onclick="cheat()" id="cheatButton">CHEAT</button> -->
         <p>MUSIC</p>
-        <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-pause'></i></button>
+        <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-play'></i></button>
         <button onclick="if(document.getElementById('musicPlayer').volume-0.1 >= 0.1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume - 0.1) * 10)/10" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
         <button onclick="if(document.getElementById('musicPlayer').volume+0.1 <= 1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume + 0.1) * 10)/10;" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
-        <audio autoplay preload loop id="musicPlayer">
+        <audio preload loop id="musicPlayer">
             <source src="minecraft.mp3" type="audio/mpeg">
             </audio>
         </div>
