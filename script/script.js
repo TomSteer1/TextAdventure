@@ -31,6 +31,8 @@ function restart(){
 	$("#key").css("visibility","hidden");
 	$("#3080").css("visibility","hidden");
 	$("#carKey").css("visibility","hidden");
+	$("#inventory").show();
+	$("#inputArea").show();
 	draw();
 	loadScript();
 }
@@ -94,6 +96,7 @@ function help(){
 		break;
 		case 2:
 			addText("Fine I'll start it for you","red");
+			$("#input").val("");
 			typeHelp();
 		break;
 	}
