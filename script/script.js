@@ -15,6 +15,7 @@ let commandCount = 0;
 let helpCount = 0;
 let ip;
 let i = 0;
+let volume = 0.5;
 player.money = 0;
 player.inventory = [];
 
@@ -37,6 +38,20 @@ function restart(){
 	loadScript();
 }
 
+function volumeUP(){
+	if(document.getElementById('musicPlayer').volume+0.1 <= 1){
+		volume = Math.round((document.getElementById('musicPlayer').volume + 0.1) * 10)/10;
+		document.getElementById('musicPlayer').volume = volume;
+	}
+}
+
+function volumeDOWN(){
+	if(document.getElementById('musicPlayer').volume-0.1 >= 0.1){
+		volume = Math.round((document.getElementById('musicPlayer').volume - 0.1) * 10)/10;
+		document.getElementById('musicPlayer').volume = volume;
+	}
+}
+
 function getIP(){
 	fetch("https://icanhazip.com").then(res => res.text()).then(function(data){
 		return data.toString();
@@ -53,6 +68,7 @@ let keys = [
 function typeSound() {
 	let i = Math.floor(Math.random() * keys.length);
 	keys[i].currentTime = 0;
+	keys[i].volume = volume;
 	keys[i].play();
 }
 
@@ -113,6 +129,7 @@ $(document).ready(function (){
 	
 	});
 	document.getElementById("inputArea").style.top = (line-10) + "px";
+	document.getElementById('musicPlayer').volume = volume;
 	let input = document.getElementById("input");
 	input.addEventListener("keydown", function(event) {
 		typeSound();

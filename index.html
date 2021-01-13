@@ -61,8 +61,8 @@
         <button onclick="restart()" id="restartButton">RESTART</button>
         <p>MUSIC</p>
         <button onclick="toggleMusic()" id="playPauseButton"><i class='fas fa-play'></i></button>
-        <button onclick="if(document.getElementById('musicPlayer').volume-0.1 >= 0.1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume - 0.1) * 10)/10" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
-        <button onclick="if(document.getElementById('musicPlayer').volume+0.1 <= 1)document.getElementById('musicPlayer').volume = Math.round((document.getElementById('musicPlayer').volume + 0.1) * 10)/10;" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
+        <button onclick="volumeDOWN()" id="volumeDownButton" class="volumeButton"><i class='fas fa-volume-down'></i></button>
+        <button onclick="volumeUP()" id="volumeUpButton" class="volumeButton"><i class='fas fa-volume-up'></i></button>
         <button onclick="help()" id="helpButton" style="visibility: visible">HELP</button>
         <audio preload loop id="musicPlayer">
             <source src="./sound/minecraft.mp3" type="audio/mpeg">
