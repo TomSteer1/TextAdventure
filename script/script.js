@@ -93,12 +93,13 @@ function typeHelp(){
 	let input = "./textAdventure"
 	if (i < input.length) {
 		let value = $("#input").val() + input.charAt(i);
-		$("#input").val(value)
+		$("#input").val(value);
 		i++;
 		setTimeout(typeHelp, 100);
 	  }else{
 		setTimeout(shellMenu, 300);
 	  }
+	typeSound();
 }
 
 function help(){
