@@ -89,13 +89,12 @@ function toggleMusic(){
 	}
 }
 
-function typeHelp(){
-	let input = "./textAdventure"
+function typeHelp(input){
 	if (i < input.length) {
 		let value = $("#input").val() + input.charAt(i);
 		$("#input").val(value);
 		i++;
-		setTimeout(typeHelp, 100);
+		setTimeout(typeHelp, 100,input);
 	  }else{
 		setTimeout(shellMenu, 300);
 	  }
@@ -114,7 +113,7 @@ function help(){
 		case 2:
 			addText("Fine I'll start it for you","red");
 			$("#input").val("");
-			typeHelp();
+			typeHelp("./textAdventure");
 		break;
 	}
 	helpCount++;
