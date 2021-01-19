@@ -52,11 +52,29 @@ function volumeDOWN(){
 	}
 }
 
-function getIP(){
-	fetch("https://icanhazip.com").then(res => res.text()).then(function(data){
-		return data.toString();
+function gcc(input){
+	input.shift()
+	let code = input.join(" ");
+	code = code.replace(/\\"/g, "%22");
+	code = code.replace(/\\n/g, "\n");
+	let data = {
+		"code": unescape(code),
+		"options": "boost-1.60,warning,gnu++1y",
+		"compiler": "gcc-head",
+		"compiler-option-raw": ""
+	}
+	fetch("https://wandbox.org/api/compile.json",{"method":"POST","body":JSON.stringify(data),"Content-Type": 'application/json'}).then(function(response){
+		response.json().then(data =>{
+			if(data.compiler_error){
+				addText("There was an error : \n" + data.compiler_error);
+			}else{
+				addText("Output : \n"+ data.program_output);
+			}
+		})
 	});
 }
+
+
 
 let keys = [
 	new Audio("./sound/key1.mp3"),
@@ -186,6 +204,10 @@ function shellMenu(){
 				$("#inputIndicator").css("color","#20C20E");
 				enteredCommands = [];
 				commandCount = 0;
+			break;
+			case "gcc":
+				gcc(input);
+				$("#input").val("");
 			break;
 			default:
 				if(input[0] != ""){
